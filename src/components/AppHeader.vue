@@ -1,6 +1,6 @@
 <script>
 
-    import axios from 'axios'
+    import axios from 'axios';
     import { store } from "../store";
 
     export default {
@@ -17,7 +17,6 @@
                 // GET NAME
                 let btnInput = document.getElementById("input");
                 this.btnResult = btnInput.value;
-                console.log(this.btnResult);
                 this.store.searchQuery = this.btnResult;
 
                 // GENERATE MOVIES ARRAY
@@ -27,6 +26,7 @@
                 query: this.store.searchQuery,
                 }
                 }).then((resp) => {
+                    this.store.moviesArray.length = 0;
                     this.store.moviesArray.push(resp.data.results);
                 })
 
@@ -37,11 +37,14 @@
                 query: this.store.searchQuery,
                 }
                 }).then((resp) => {
+                    this.store.seriesArray.length = 0;
                     this.store.seriesArray.push(resp.data.results); 
                 })
 
                 // CONSOLE LOGS
+                console.log("movies");
                 console.log(this.store.moviesArray);
+                console.log("series");
                 console.log(this.store.seriesArray);
             }
         }
@@ -79,7 +82,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: gray;
+        background-color: black;
         width: 100%;
     }
 
